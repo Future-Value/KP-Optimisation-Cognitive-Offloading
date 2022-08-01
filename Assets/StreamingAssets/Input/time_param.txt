@@ -1,0 +1,10 @@
+timeRest1min:3
+timeRest1max:3
+timeRest2min:60
+timeRest2max:600
+timeQuestion:5
+timeAnswer:1
+timeCostShow:2
+timeCostEnter:5
+timeReward:2
+timeConfidence:3

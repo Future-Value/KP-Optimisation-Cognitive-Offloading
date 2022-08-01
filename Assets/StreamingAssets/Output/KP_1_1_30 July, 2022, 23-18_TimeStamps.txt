@@ -1,0 +1,11 @@
+PartcipantID:1
+RandID:1
+InitialTimeStamp:23-18-49-003
+block;trial;eventType;elapsedTime
+1;1;Trial;0.158
+1;1;ConfidenceScreen;4.951
+1;1;Confidence;4.981
+1;1;InterTrialRest;8.039
+1;2;Trial;11.133
+1;2;ConfidenceScreen;16.1
+1;2;Confidence;16.128
