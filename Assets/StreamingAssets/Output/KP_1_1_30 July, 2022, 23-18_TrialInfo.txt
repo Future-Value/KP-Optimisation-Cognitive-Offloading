@@ -1,5 +1,0 @@
-PartcipantID:1
-RandID:1
-InitialTimeStamp:23-18-49-003
-block;trial;answer;correct;timeSpent;itemsSelected;finalvalue;finalweight;ReverseButtons;instanceNumber;pay;xyCoordinates;
-1;1;0;1;5;2,1;30;0;0;33;0.5;(-800,210)(-600,290)(-400,290)(-400,-270)(-800,50)(400,370)

@@ -102,11 +102,10 @@
      <None Include="Assets\StreamingAssets\Python\Size input\i6.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\17_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i46.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-11_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\12_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\23_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\41_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-05_Clicks.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-55_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i6.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i69.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\47_param2.txt" />
@@ -120,7 +119,6 @@
      <None Include="Assets\StreamingAssets\Python\Reward input\24_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\5_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\26_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-50_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i16.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\49_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i58.txt" />
@@ -128,29 +126,25 @@
      <None Include="Assets\StreamingAssets\Output\placeholder.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\34_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i32.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-55_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\14_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-55_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i71.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-18_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\28_param2.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-58_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i68.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i24.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-42_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i43.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i14.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-08_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i23.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\35_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-50_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i33.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\28_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i27.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-11_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\26_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\50_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\13_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-10_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i4.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-59_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\16_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i12.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i73.txt" />
@@ -167,7 +161,6 @@
      <None Include="Assets\StreamingAssets\Input\KPInstances\i79.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i33.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i11.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-23_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i42.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i7.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\32_param2.txt" />
@@ -181,18 +174,14 @@
      <None Include="Assets\StreamingAssets\Python\Size input\i62.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\29_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\32_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-40_InstancesInfo.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-23_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\6_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i26.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_31 July, 2022, 00-21_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i55.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i45.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\22_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\38_param2.txt" />
      <None Include="Assets\TobiiPro\VR\readme.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i20.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_31 July, 2022, 00-03_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i53.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i48.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\22_param2.txt" />
@@ -218,15 +207,12 @@
      <None Include="Assets\StreamingAssets\Input\KPInstances\35_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i75.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\25_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_31 July, 2022, 00-03_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\34_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\10_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\31_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\5_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i22.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\20_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-08_Clicks.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-40_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\22_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i2.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\23_param2.txt" />
@@ -240,20 +226,19 @@
      <None Include="Assets\StreamingAssets\Input\KPInstances\i67.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\17_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i17.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-11_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\31_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i66.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i37.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\8_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\49_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-16_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i16.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-55_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\7_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i24.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_31 July, 2022, 00-21_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\21_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\1_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i52.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-58_Clicks.txt" />
      <None Include="Assets\TobiiPro\ScreenBased\readme.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\29_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i20.txt" />
@@ -270,44 +255,34 @@
      <None Include="Assets\StreamingAssets\Python\Size input\i40.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\16_param2.txt" />
      <None Include="Assets\TobiiPro\Examples\VRDemo\readme.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-10_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i77.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\2_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i22.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-55_TrialInfo.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-40_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i71.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\36_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i39.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i49.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_31 July, 2022, 00-21_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i9.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\19_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i44.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i58.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\1_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-40_TimeStamps.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-22_InstancesInfo.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-40_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i57.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i1.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\33_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-53_InstancesInfo.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-59_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\26_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\42_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i38.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-22_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i50.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-50_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\5_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i21.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\38_param2.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-55_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\38_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\30_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\33_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-40_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i10.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-08_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i29.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i17.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i13.txt" />
@@ -316,7 +291,6 @@
      <None Include="Assets\StreamingAssets\Python\Size input\40_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\7_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\10_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-16_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\39_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i12.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\50_param2.txt" />
@@ -325,16 +299,13 @@
      <None Include="Assets\StreamingAssets\Python\Size input\i80.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i9.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i11.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-42_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\33_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\16_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i55.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_31 July, 2022, 00-03_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\45_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i30.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i16.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i78.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_31 July, 2022, 00-03_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i70.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\49_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i72.txt" />
@@ -367,7 +338,6 @@
      <None Include="Assets\StreamingAssets\Input\KPInstances\i15.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i5.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i19.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-18_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\18_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\23_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\13_param2.txt" />
@@ -380,19 +350,15 @@
      <None Include="Assets\StreamingAssets\Python\Size input\i4.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i65.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\40_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-10_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i28.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i15.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i42.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i40.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i9.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-53_Clicks.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-40_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\1_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i22.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\24_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i57.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-50_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i19.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i80.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\9_param2.txt" />
@@ -409,6 +375,7 @@
      <None Include="Assets\StreamingAssets\Python\Size input\i67.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\24_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i38.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-59_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\39_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\15_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\2_param2.txt" />
@@ -429,16 +396,12 @@
      <None Include="Assets\StreamingAssets\Python\Reward input\47_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\2_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i35.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-42_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\49_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-23_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i25.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i13.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\3_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-10_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i14.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i54.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-18_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\42_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i18.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\25_param2.txt" />
@@ -448,17 +411,15 @@
      <None Include="Assets\StreamingAssets\Input\KPInstances\11_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i70.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\7_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-08_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i64.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i24.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i60.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-18_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\4_param2.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-59_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\42_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\18_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i78.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i17.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-16_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i7.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\10_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\34_param2.txt" />
@@ -472,20 +433,20 @@
      <None Include="Assets\StreamingAssets\Python\Size input\i34.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\14_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\29_param2.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-58_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i51.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i8.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\34_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\43_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i54.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i11.txt" />
+     <None Include="Assets\StreamingAssets\Output\KP_1_1_03 August, 2022, 16-58_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\28_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-05_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i44.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i52.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i11.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\9_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\5_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-55_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i19.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i18.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i43.txt" />
@@ -495,7 +456,6 @@
      <None Include="Assets\StreamingAssets\Python\Reward input\27_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i23.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\i7.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_31 July, 2022, 00-21_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i75.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\12_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\48_param2.txt" />
@@ -514,18 +474,15 @@
      <None Include="Assets\StreamingAssets\Python\Size input\i2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\32_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\21_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-16_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Output\TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\27_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i5.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i37.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i20.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\19_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-23_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i9.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i74.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i15.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-05_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\24_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\40_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i27.txt" />
@@ -534,20 +491,14 @@
      <None Include="Assets\StreamingAssets\Python\Size input\37_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\17_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\44_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-55_Clicks.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-22_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\42_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-11_Clicks.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i21.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\20_param2.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-42_InstancesInfo.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\6_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\18_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i1.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\31_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i31.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 22-40_Clicks.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-05_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i61.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i3.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\36_param2.txt" />
@@ -556,8 +507,6 @@
      <None Include="Assets\StreamingAssets\Python\Cost input\i18.txt" />
      <None Include="Assets\StreamingAssets\Python\Reward input\26_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i62.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-22_Clicks.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-53_TimeStamps.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i12.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i59.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i2.txt" />
@@ -566,47 +515,46 @@
      <None Include="Assets\StreamingAssets\Input\KPInstances\18_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\37_param2.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\i13.txt" />
-     <None Include="Assets\StreamingAssets\Output\KP_1_1_30 July, 2022, 23-53_TrialInfo.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i49.txt" />
      <None Include="Assets\StreamingAssets\Python\Cost input\6_param2.txt" />
      <None Include="Assets\StreamingAssets\Input\KPInstances\i5.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\i51.txt" />
      <None Include="Assets\StreamingAssets\Python\Size input\13_param2.txt" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Sprite.Editor">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Tilemap.Editor">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -786,16 +734,16 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
  <Reference Include="Tobii.Research.Mono">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Assets/TobiiPro/Plugins/Tobii.Research.Mono.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Assets/TobiiPro/Plugins/Tobii.Research.Mono.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
- <HintPath>C:/Users/IanYi/OneDrive/Documents/STUDY/Higher Education/4th Year (Honours)/Thesis/Thesis Experiment/KP-Optimisation-Cognitive-Offloading/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>C:/Users/IanYi/Desktop/KP-Optimisation-Cognitive-Offloading/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.0f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

@@ -40,8 +40,40 @@ public class BoardManager : MonoBehaviour
     public Text WeightText;
     public Text WeightLeft;
     public Text TooHeavy;
+
     public Text Note1;
     public Text Note2;
+    public Text Note3;
+    public Text Note4;
+    public Text Note5;
+    public Text Note6;
+    public Text Note7;
+    public Text Note8;
+    public Text Note9;
+    public Text Note10;
+    public Text Note11;
+    public Text Note12;
+    public Text Note13;
+    public Text Note14;
+    public Text Note15;
+    public Text Note16;
+    public Text Note17;
+    public Text Note18;
+    public Text Note19;
+    public Text Note20;
+    public Text Note21;
+    public Text Note22;
+    public Text Note23;
+    public Text Note24;
+    public Text Note25;
+    public Text Note26;
+    public Text Note27;
+    public Text Note28;
+    public Text Note29;
+    public Text Note30;
+
+    public static List<string> notelist = new List<string>();
+
 
     //The possible positions of the items;
     private List<Vector2> gridPositions = new List<Vector2>();
@@ -60,6 +92,9 @@ public class BoardManager : MonoBehaviour
 
     // Reset button
     public Button Reset;
+    
+
+    public Button TestButton;
 
     // Answer button
     public Button Answer;
@@ -197,15 +232,50 @@ public class BoardManager : MonoBehaviour
         ShowCalcWeight.onClick.AddListener(TotalWeight);
 
         // make store buttons clickable
-        Note1 = GameObject.Find("Note1").GetComponent<Text>();
         Button StoreValue = GameObject.Find("StoreValue").GetComponent<Button>();
         StoreValue.onClick.AddListener(MemoriseValue);
-
-        Note2 = GameObject.Find("Note2").GetComponent<Text>();
         Button StoreWeight = GameObject.Find("StoreWeight").GetComponent<Button>();
         StoreWeight.onClick.AddListener(MemoriseWeight);
 
-        
+
+        Button TestButton = GameObject.Find("TestButton").GetComponent<Button>();
+        TestButton.onClick.AddListener(RemoveEverything);
+
+
+
+        // transfer stored text to textboxes
+        Note1 = GameObject.Find("Note1").GetComponent<Text>();
+        Note2 = GameObject.Find("Note2").GetComponent<Text>();
+        Note3 = GameObject.Find("Note3").GetComponent<Text>();
+        Note4 = GameObject.Find("Note4").GetComponent<Text>();
+        Note5 = GameObject.Find("Note5").GetComponent<Text>();
+        Note6 = GameObject.Find("Note6").GetComponent<Text>();
+        Note7 = GameObject.Find("Note7").GetComponent<Text>();
+        Note8 = GameObject.Find("Note8").GetComponent<Text>();
+        Note9 = GameObject.Find("Note9").GetComponent<Text>();
+        Note10 = GameObject.Find("Note10").GetComponent<Text>();
+        Note11 = GameObject.Find("Note11").GetComponent<Text>();
+        Note12 = GameObject.Find("Note12").GetComponent<Text>();        
+        Note13 = GameObject.Find("Note13").GetComponent<Text>();
+        Note14 = GameObject.Find("Note14").GetComponent<Text>();
+        Note15 = GameObject.Find("Note15").GetComponent<Text>();
+        Note16 = GameObject.Find("Note16").GetComponent<Text>();
+        Note17 = GameObject.Find("Note17").GetComponent<Text>();
+        Note18 = GameObject.Find("Note18").GetComponent<Text>();
+        Note19 = GameObject.Find("Note19").GetComponent<Text>();
+        Note20 = GameObject.Find("Note20").GetComponent<Text>();
+        Note21 = GameObject.Find("Note21").GetComponent<Text>();
+        Note22 = GameObject.Find("Note22").GetComponent<Text>();
+        Note23 = GameObject.Find("Note23").GetComponent<Text>();
+        Note24 = GameObject.Find("Note24").GetComponent<Text>();
+        Note25 = GameObject.Find("Note25").GetComponent<Text>();
+        Note26 = GameObject.Find("Note26").GetComponent<Text>();
+        Note27 = GameObject.Find("Note27").GetComponent<Text>();
+        Note28 = GameObject.Find("Note28").GetComponent<Text>();
+        Note29 = GameObject.Find("Note29").GetComponent<Text>();
+        Note30 = GameObject.Find("Note30").GetComponent<Text>();
+
+
         if (GameManager.size == 1)
         {
             GameObject.Find("Timer1").SetActive(false);
@@ -235,9 +305,7 @@ public class BoardManager : MonoBehaviour
     {
         gridPositions.Clear();
 
-        if (GameManager.reward == 1 || GameManager.cost == 1)
-        {
-            int radius = 350;
+        int radius = 300;
             for (int i = 0; i < ws.Length; i++)
             {
                 // Generate a new item every this many radians...
@@ -247,21 +315,34 @@ public class BoardManager : MonoBehaviour
                 gridPositions.Add(new Vector2((float)Math.Sin(radian_separation * i) * radius, 
                     (float)Math.Cos(radian_separation * i) * radius));
             }
-        }
-        else
-        {
-            // Generate a list of possible positions, this is shaped like a box with a centre cut out
-            for (int x = -resolutionWidth / 2; x < resolutionWidth / 2; x += resolutionWidth / columns)
-            {
-                for (int y = -resolutionHeight / 2 + bottommargin; y < resolutionHeight / 2; y += ((resolutionHeight - bottommargin) / rows))
-                {
-                    if (Math.Abs(x) > centremargin || Math.Abs(y) > centremargin)
-                    {
-                        gridPositions.Add(new Vector2(x, y));
-                    }
-                }
-            }
-        }
+
+        //if (GameManager.reward == 1 || GameManager.cost == 1)
+        //{
+        //    int radius = 350;
+        //    for (int i = 0; i < ws.Length; i++)
+        //    {
+        //        // Generate a new item every this many radians...
+        //        double radian_separation = (360f / ws.Length * Math.PI) / 180;
+        //        //Debug.Log((float)Math.Sin(radian_separation * i) * radius + " " +
+        //        //    (float)Math.Cos(radian_separation * i) * radius);
+        //        gridPositions.Add(new Vector2((float)Math.Sin(radian_separation * i) * radius, 
+        //            (float)Math.Cos(radian_separation * i) * radius));
+        //    }
+        //}
+        //else
+        //{
+        //    // Generate a list of possible positions, this is shaped like a box with a centre cut out
+        //    for (int x = -resolutionWidth / 2; x < resolutionWidth / 2; x += resolutionWidth / columns)
+        //    {
+        //        for (int y = -resolutionHeight / 2 + bottommargin; y < resolutionHeight / 2; y += ((resolutionHeight - bottommargin) / rows))
+        //        {
+        //            if (Math.Abs(x) > centremargin || Math.Abs(y) > centremargin)
+        //            {
+        //                gridPositions.Add(new Vector2(x, y));
+        //            }
+        //        }
+        //    }
+        //}
 
         //Debug.Log("Number of possible positions: " + gridPositions.Count);
     }
@@ -324,46 +405,51 @@ public class BoardManager : MonoBehaviour
         //Gets the subcomponents of the item 
         GameObject bill = instance.transform.Find("Bill").gameObject;
         GameObject weight = instance.transform.Find("Weight").gameObject;
+        GameObject itemcircle = instance.transform.Find("Item Number").gameObject;
 
         //Sets the Text of the items
         bill.GetComponentInChildren<Text>().text = "$" + vs[itemNumber];
         weight.GetComponentInChildren<Text>().text = ws[itemNumber].ToString() + "kg";
+        itemcircle.GetComponentInChildren<Text>().text = (itemNumber + 1).ToString();
 
-/*        if (GameManager.size == 1)
-        {
-            // Calculates the area of the Value and Weight sections of the item according to approach 2 
-            // and then Scales the sections so they match the corresponding area.
-            Vector3 curr_billscale = bill.transform.localScale;
-            float billscale = (float)Math.Pow(vs[itemNumber] / vs.Average(), 0.6) * curr_billscale.x - 0.15f;
+        // circle....text = itemNumber.ToString()
+        
 
-            if (billscale < 0.7f * curr_billscale.x)
-            {
-                billscale = 0.7f * curr_billscale.x;
-            }
-            else if (billscale > 1.0f * curr_billscale.x)
-            {
-                billscale = 1.0f * curr_billscale.x;
-            }
+        //if (GameManager.size == 1)
+        //{
+        //    // Calculates the area of the Value and Weight sections of the item according to approach 2 
+        //    // and then Scales the sections so they match the corresponding area.
+        //    Vector3 curr_billscale = bill.transform.localScale;
+        //    float billscale = (float)Math.Pow(vs[itemNumber] / vs.Average(), 0.6) * curr_billscale.x - 0.15f;
 
-            bill.transform.localScale = new Vector3(billscale,
-                billscale, billscale);
+        //    if (billscale < 0.7f * curr_billscale.x)
+        //    {
+        //        billscale = 0.7f * curr_billscale.x;
+        //    }
+        //    else if (billscale > 1.0f * curr_billscale.x)
+        //    {
+        //        billscale = 1.0f * curr_billscale.x;
+        //    }
 
-            Vector3 curr_weightscale = weight.transform.localScale;
-            float weightscale = (float)Math.Pow(ws[itemNumber] / ws.Average(), 0.6) * curr_weightscale.x - 0.15f;
+        //    bill.transform.localScale = new Vector3(billscale,
+        //        billscale, billscale);
 
-            if (weightscale < 0.7f * curr_weightscale.x)
-            {
-                weightscale = 0.7f * curr_weightscale.x;
-            }
-            else if (weightscale > 1.0f * curr_weightscale.x)
-            {
-                weightscale = 1.0f * curr_weightscale.x;
-            }
+        //    Vector3 curr_weightscale = weight.transform.localScale;
+        //    float weightscale = (float)Math.Pow(ws[itemNumber] / ws.Average(), 0.6) * curr_weightscale.x - 0.15f;
 
-            weight.transform.localScale = new Vector3(weightscale,
-                weightscale, weightscale);
-        }
-*/
+        //    if (weightscale < 0.7f * curr_weightscale.x)
+        //    {
+        //        weightscale = 0.7f * curr_weightscale.x;
+        //    }
+        //    else if (weightscale > 1.0f * curr_weightscale.x)
+        //    {
+        //        weightscale = 1.0f * curr_weightscale.x;
+        //    }
+
+        //    weight.transform.localScale = new Vector3(weightscale,
+        //        weightscale, weightscale);
+        //}
+
         Item itemInstance = new Item
         {
             gameItem = instance,
@@ -562,25 +648,24 @@ public class BoardManager : MonoBehaviour
     }
 
     // Function to display distance and weight in Unity
-/*    void SetTopRowText()
-    {
-        CalcValue();
-        ValueText.text = "Total Value: $" + GameManager.valueValue.ToString();
+    // void SetTopRowText()
+    // {
+    //     CalcValue();
+    //     ValueText.text = "Total Value: $" + GameManager.valueValue.ToString();
 
-        CalcWeight();
-        WeightText.text = "Total Weight: " + GameManager.weightValue.ToString() + "kg";
-        if ((GameManager.kpinstances[currInstance].capacity - GameManager.weightValue) >= 0)
-        {
-            WeightLeft.text = "Excess Capacity: " + (GameManager.kpinstances[currInstance].capacity -
-                GameManager.weightValue).ToString() + "kg";
-        }
-    }
-*/
+    //     CalcWeight();
+    //     WeightText.text = "Total Weight: " + GameManager.weightValue.ToString() + "kg";
+    //     if ((GameManager.kpinstances[currInstance].capacity - GameManager.weightValue) >= 0)
+    //     {
+    //         WeightLeft.text = "Excess Capacity: " + (GameManager.kpinstances[currInstance].capacity -
+    //             GameManager.weightValue).ToString() + "kg";
+    //     }
+    // }
+
     void TotalValue()
     {
         CalcValue();
         ValueText.text = "TOTAL VALUE: $" + GameManager.valueValue.ToString();
-        Debug.Log(ValueText.text.Substring(14,1));
     }
 
     void TotalWeight()
@@ -589,16 +674,37 @@ public class BoardManager : MonoBehaviour
         WeightText.text = "TOTAL WEIGHT: " + GameManager.weightValue.ToString() + "kg";
     }
 
+
     // Function to store calculated value and weight in a textbox
     void MemoriseValue()
     {
-        Note1.text = ValueText.text.Substring(13);
+        string storedvalue = ValueText.text.Substring(13);
+        
+        if (!notelist.Contains(storedvalue))
+        {
+            notelist.Add(storedvalue);
+        }
+        
+        int notenumber = notelist.FindIndex(a => a.Contains(storedvalue)) + 1;
+        string notefinder = "Note" + notenumber.ToString();
+
+        GameObject.Find(notefinder).GetComponent<UnityEngine.UI.Text>().text = storedvalue;
     }
 
     void MemoriseWeight()
     {
-        Note2.text = WeightText.text.Substring(14);
+        string storedweight = WeightText.text.Substring(14);
+        if (!notelist.Contains(storedweight))
+        {
+            notelist.Add(storedweight);
+        }
+        
+        int notenumber = notelist.FindIndex(a => a.Contains(storedweight)) + 1;
+        string notefinder = "Note" + notenumber.ToString();
+
+        GameObject.Find(notefinder).GetComponent<UnityEngine.UI.Text>().text = storedweight;
     }
+
 
     // Add current item to previous items
     void AddItem(Item itemToLocate)
@@ -771,6 +877,29 @@ public class BoardManager : MonoBehaviour
         {
             EnterNum.ActivateInputField();
         }
+
+    }
+
+    // remove all offloading mechanisms and prepare for submission
+    public void RemoveEverything()
+    {
+        Lightoff();
+        previousitems.Clear();
+        TotalValue();
+        TotalWeight();
+        itemsvisited = 0;
+
+        GameObject.Find("ShowCalcValue").SetActive(false);
+        GameObject.Find("ShowCalcWeight").SetActive(false);
+        GameObject.Find("StoreValue").SetActive(false);
+        GameObject.Find("StoreWeight").SetActive(false);
+        GameObject.Find("Reset").SetActive(false);
+        GameObject.Find("ValueText").SetActive(false);
+        GameObject.Find("WeightText").SetActive(false);
+
+
+        GameManager.tiempo = 5;
+        GameManager.totalTime = 5;
 
     }
 }

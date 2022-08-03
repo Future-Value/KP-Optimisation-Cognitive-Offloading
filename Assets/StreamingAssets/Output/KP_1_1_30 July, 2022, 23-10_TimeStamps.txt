@@ -1,7 +1,0 @@
-PartcipantID:1
-RandID:1
-InitialTimeStamp:23-10-26-943
-block;trial;eventType;elapsedTime
-1;1;ConfidenceScreen;0.206
-1;1;Confidence;0.233
-1;1;InterTrialRest;3.04
