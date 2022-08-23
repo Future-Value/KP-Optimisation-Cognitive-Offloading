@@ -1,7 +1,9 @@
-weights:[13,58,76,92,50,26]
-values:[80,13,24,62,42,71]
-capacity:282
-profit:361
-problemID:2-0.44-0.68
-instanceType:low_prop
-solution:1
+instance_id:12
+capacity:89
+values:[27,37,48,2,7,18]
+weights:[43,39,22,38,41,14]
+optimal_value:103
+alpha_c:0.45
+alpha_p_star:0.741007194244604
+sahniK:0
+seed:1681

@@ -7,4 +7,5 @@ timeAnswer:1
 timeCostShow:2
 timeCostEnter:5
 timeReward:2
-timeConfidence:3
+timeConfidence:20
+timeSubmit:5

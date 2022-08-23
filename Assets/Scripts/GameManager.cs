@@ -1,4 +1,5 @@
-﻿/* Unity 3D program that displays multiple interactive instances of the Knapsack Problem.
+﻿/* 
+ * Unity 3D program that displays multiple interactive instances of the Knapsack Problem.
  * 
  * Optimal resolution 1920x1080
  * 
@@ -13,7 +14,6 @@
  * Honours students should make further changes to suit their projects.
  */
 
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,16 +24,16 @@ using System.Linq;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
 
+
 public class GameManager : MonoBehaviour
 {
     // Stopwatch to calculate time of events.
     public static System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
-    // Time at which the stopwatch started. Time of each event is 
-    // calculated according to this moment.
+
+    // Time at which the stopwatch started. Time of each event is calculated according to this moment.
     public static string initialTimeStamp;
 
-    // Game Manager: It is a singleton (i.e. it is always one and the 
-    // same it is nor destroyed nor duplicated)
+    // Game Manager: It is a singleton (i.e. it is always one and the same it is nor destroyed nor duplicated)
     public static GameManager gameManager = null;
 
     // The reference to the script managing the board (interface/canvas).
@@ -45,10 +45,8 @@ public class GameManager : MonoBehaviour
     // Time spent so far on this scene
     public static float tiempo;
 
-    // Some of the following parameters are a default to be used if 
-    // they are not specified in the input files.
-    // Otherwise they are rewritten (see loadParameters() )
-    // Total time for these scene
+    // Some of the following parameters are a default to be used if they are not specified in the input files.
+    // Otherwise they are rewritten (see loadParameters() ) Total time for these scene
     public static float totalTime;
 
     // Time spent at the instance
@@ -77,6 +75,7 @@ public class GameManager : MonoBehaviour
     // Time given for each trial (The total time the items are shown -With and without the question-)
     public static float timeQuestion;
     public static float timeAnswer;
+    public static float timeSubmit;
 
     // Time given for confidence rating
     public static float timeConfidence;
@@ -123,6 +122,9 @@ public class GameManager : MonoBehaviour
     
     // The order of the Instances to be presented
     public static int[] Randomization;
+    
+    // The order of the control and offloading trial randomization
+    public static int[] offloadingRandomization;
 
     //The order of the left/right No/Yes randomization
     public static int[] buttonRandomization;
@@ -133,6 +135,9 @@ public class GameManager : MonoBehaviour
     // 2 if not selected
     // 100 if not applicable. i.e. optimisation KP.
     public static int answer;
+    public static int optimal_value;
+    public static int final_value;
+    public static int final_weight;
 
     // Skip button in case user does not want a break
     public static GameObject skipButton;
@@ -141,13 +146,13 @@ public class GameManager : MonoBehaviour
     // Performance should always be equal to or greater than 1.
     // Due to the way it's calculated (participant answer/optimal solution), performance closer to 1 is better.
     public static List<double> perf = new List<double>();
-    public static double performance;
+    public static int performance;
     public static List<double> paylist = new List<double>();
     public static double pay;
 
     // Keep track of total payment
     // Default value is the show up fee
-    public static double payAmount = 8.00;
+    public static double payAmount = 10.00;
 
     // current value
     public static int valueValue;
@@ -159,13 +164,16 @@ public class GameManager : MonoBehaviour
     public struct KPInstance
     {
         public int capacity;
-        public int profit;
-
+//        public int profit;
         public int[] weights;
         public int[] values;
 
         public string id;
-        public string type;
+        public string alpha_c;
+        public string alpha_p_star;
+        public string sahniK;
+        public string seed;
+//        public string type;
 
         public int solution;
     }
@@ -173,7 +181,7 @@ public class GameManager : MonoBehaviour
     // An array of all the instances to be uploaded form .txt files.
     public static KPInstance[] kpinstances;
 
-    // Use this for initialization
+    // Use this for initializationSaveTimeStamp
     void Awake()
     {
         //Makes the Game manager a Singleton
@@ -214,10 +222,7 @@ public class GameManager : MonoBehaviour
         6= payment
 		*/
         Scene scene = SceneManager.GetActiveScene();
-
         escena = scene.name;
-
-        //Debug.Log("Current Scene: " + escena);
 
         if (escena == "SetUp")
         {
@@ -228,10 +233,7 @@ public class GameManager : MonoBehaviour
         {
             showTimer = false;
 
-            //Debug.Log(reward_amount[0] + "   " + reward_amount[1] + "   " + reward_amount[2] + "   " + reward_amount[3] + "   " + reward_amount[4]);
-
             GameObject.Find("Text").GetComponent<Text>().text = "You are currently playing for $" + reward_amount[TotalTrials];
-
 
             tiempo = timeReward;
             totalTime = timeReward;
@@ -243,12 +245,10 @@ public class GameManager : MonoBehaviour
             showTimer = false;
 
             RandNum = Random.Range((int)Math.Pow(10, RandNumDigits - 1), (int)Math.Pow(10, RandNumDigits) - 1);
-
             GameObject.Find("Number").GetComponent<Text>().text = "" + RandNum;
 
-
             tiempo = timeCostShow;
-            totalTime = timeCostShow;
+            totalTime = timeCostShow; 
             //skipButton = GameObject.Find("Skip").GetComponent<Button>();
             //skipButton.onClick.AddListener(SkipClicked);
         }
@@ -285,21 +285,23 @@ public class GameManager : MonoBehaviour
             showTimer = true;
             answer = 2;
 
-            BoardManager.RandomizeButtons();
+//            BoardManager.RandomizeButtons();
 
             tiempo = timeAnswer;
             totalTime = timeAnswer;
         }
         else if (escena == "Confidence")
         {
-            //BoardManager.ConfidenceButtons();
+            BoardManager.ConfidenceButtons();
             showTimer = true;
+
             tiempo = timeConfidence;
             totalTime = timeConfidence;
         }
         else if (escena == "InterTrialRest")
         {
             showTimer = false;
+
             tiempo = Random.Range(timeRest1min, timeRest1max);
             totalTime = tiempo;
         }
@@ -308,13 +310,12 @@ public class GameManager : MonoBehaviour
             trial = 0;
             block++;
             showTimer = true;
+
             tiempo = timeRest2max;
             totalTime = tiempo;
 
             skipButton = GameObject.Find("Skip");
-
             skipButton.GetComponent<Button>().onClick.AddListener(SkipClicked);
-
             skipButton.SetActive(false);
         }
         else if (escena == "End")
@@ -346,8 +347,6 @@ public class GameManager : MonoBehaviour
         {
             SubmittedRandNum = -1;
         }
-
-        // Debug.Log("The random number was: " + RandNum + ", user submitted: " + SubmittedRandNum);
         
         ChangeToNextScene(BoardManager.itemClicks, true);
     }
@@ -427,20 +426,15 @@ public class GameManager : MonoBehaviour
                 timeTaken = timeQuestion - tiempo;
                 WAIT_TIME = WAIT_TIME + tiempo;
             }
-            else
-            {
-                timeTaken = timeQuestion;
-            }
 
             // Load next scene
             if (decision == 1)
             {
-                IOManager.SaveTimeStamp("AnswerScreen");
+                IOManager.SaveTimeStamp("Answer_Screen");
                 SceneManager.LoadScene("TrialAnswer");
             }
             else if (decision == 0)
             {
-                IOManager.SaveTimeStamp("ConfidenceScreen");
                 SceneManager.LoadScene("Confidence");
             }
         }
@@ -452,13 +446,12 @@ public class GameManager : MonoBehaviour
                 
                 if (answer != 2)
                 {
-                    IOManager.SaveTimeStamp("ParticipantAnswer");
+                    IOManager.SaveTimeStamp("Participant_Answer");
                 }
             }
 
             if (cost == 1 || reward == 1)
             {
-                // Debug.Log(WAIT_TIME + "    " + escena);
                 if (WAIT_TIME > 0)
                 {
                     if(Waited == 0)
@@ -508,25 +501,21 @@ public class GameManager : MonoBehaviour
         else if (escena == "InterTrialRest")
         {
             // Save participant answer
-            // Calc Perf
             performance = 0;
-
-            if (kpinstances[BoardManager.currInstance].solution == answer && 
-                (cost != 1 || RandNum == SubmittedRandNum))
-            {
-                performance = 1;
-            }
+            optimal_value = kpinstances[TotalTrials - 1].solution;
+            
+            if (optimal_value == final_value){performance = 1;}
 
             perf.Add(performance);
 
             pay = reward_amount[TotalTrials - 1] * performance;
-
             paylist.Add(pay);
-
             payAmount += pay;
             Debug.Log("current pay: $" + payAmount);
 
-            IOManager.SaveTrialInfo(answer, ExtractItemsSelected(itemClicks), timeTaken);
+            answer = performance;
+
+            IOManager.SaveTrialInfo(answer, ExtractItemsSelected(itemClicks), ExtractTimeTaken(itemClicks));
             IOManager.SaveClicks(itemClicks);
 
             ChangeToNextTrial();
@@ -555,7 +544,6 @@ public class GameManager : MonoBehaviour
     //Redirects to the next scene depending if the trials or blocks are over.
     private static void ChangeToNextTrial()
     {
-        //Debug.Log(trial + "   "+ numberOfTrials);
         //Checks if trials are over
         if (trial < numberOfTrials)
         {
@@ -616,6 +604,20 @@ public class GameManager : MonoBehaviour
         return itemsInS;
     }
 
+    private static float ExtractTimeTaken(List<BoardManager.Click> itemClicks)
+    {
+        foreach (BoardManager.Click click in itemClicks)
+        {
+            if (click.description == "submit")
+            {
+                timeTaken = click.time;
+            }
+        }
+
+        return timeTaken;
+    }
+
+
     // Starts the stopwatch. Time of each event is calculated according to this moment.
     // Sets "initialTimeStamp" to the time at which the stopwatch started.
     public static void SetTimeStamp()
@@ -656,22 +658,23 @@ public class GameManager : MonoBehaviour
         // When the time runs out:
         if (tiempo < 0)
         {
-            //if (escena == "EnterNumber")
-            //{
-            //    try
-            //    {
-            //        int.TryParse(GameObject.Find("UserNum").GetComponent<Text>().text, out SubmittedRandNum);
-            //    }
-            //    catch
-            //    {
-            //        SubmittedRandNum = -1;
-            //    }
+            if (escena == "Trial" && BoardManager.submitcounter == 0)
+            {
+                BoardManager.RemoveEverything();
+            }
+            else if (escena == "Trial" && BoardManager.submitcounter == 1)
+            {
+                BoardManager.CalcValue();
+                BoardManager.CalcWeight();
+                final_value = valueValue;
+                final_weight = weightValue;
 
-            //    Debug.Log("The random number was: " + RandNum + ", user submitted: " + SubmittedRandNum);
-            //}
-            // Debug.Log("Tiempo was: " + tiempo);
-            // Debug.Log("Scene was: " + escena);
-            ChangeToNextScene(BoardManager.itemClicks, false);
+                ChangeToNextScene(BoardManager.itemClicks, false);
+            }
+            else
+            {
+                ChangeToNextScene(BoardManager.itemClicks, false);
+            }
         }
     }
 
@@ -692,7 +695,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("The random number was: " + RandNum + ", user submitted: " + SubmittedRandNum);
         }
 
-        Debug.Log("Skip Clicked");
         ChangeToNextScene(BoardManager.itemClicks, true);
     }
 }

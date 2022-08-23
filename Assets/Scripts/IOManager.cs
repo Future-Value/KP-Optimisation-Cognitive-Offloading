@@ -72,7 +72,7 @@ public class IOManager : MonoBehaviour
             var dict = new Dictionary<string, string>();
 
             // Open the text file using a stream reader.
-            using (StreamReader sr = new StreamReader(folderPathLoadInstances + "i" + (k + 1) + ".txt"))
+            using (StreamReader sr = new StreamReader(folderPathLoadInstances + "i" + GameManager.Randomization[k] + ".txt"))
             {
                 ReadToDict(sr, dict);
             }
@@ -80,19 +80,24 @@ public class IOManager : MonoBehaviour
             dict.TryGetValue("weights", out string weightsS);
             dict.TryGetValue("values", out string valuesS);
             dict.TryGetValue("capacity", out string capacityS);
-            dict.TryGetValue("profit", out string profitS);
-            dict.TryGetValue("solution", out string solutionS);
+//            dict.TryGetValue("profit", out string profitS);
+            dict.TryGetValue("optimal_value", out string solutionS);
+
 
             GameManager.kpinstances[k].weights = 
                 Array.ConvertAll(weightsS.Substring(1, weightsS.Length - 2).Split(','), int.Parse);
             GameManager.kpinstances[k].values = 
                 Array.ConvertAll(valuesS.Substring(1, valuesS.Length - 2).Split(','), int.Parse);
             GameManager.kpinstances[k].capacity = int.Parse(capacityS);
-            GameManager.kpinstances[k].profit = int.Parse(profitS);
+//            GameManager.kpinstances[k].profit = int.Parse(profitS);
             GameManager.kpinstances[k].solution = int.Parse(solutionS);
 
-            dict.TryGetValue("problemID", out GameManager.kpinstances[k].id);
-            dict.TryGetValue("instanceType", out GameManager.kpinstances[k].type);
+            dict.TryGetValue("instance_id", out GameManager.kpinstances[k].id);
+            dict.TryGetValue("alpha_c", out GameManager.kpinstances[k].alpha_c);
+            dict.TryGetValue("alpha_p_star", out GameManager.kpinstances[k].alpha_p_star);
+            dict.TryGetValue("sahniK", out GameManager.kpinstances[k].sahniK);
+            dict.TryGetValue("seed", out GameManager.kpinstances[k].seed);
+//            dict.TryGetValue("instanceType", out GameManager.kpinstances[k].type);
         }
     }
 
@@ -147,6 +152,7 @@ public class IOManager : MonoBehaviour
         dictionary.TryGetValue("timeRest2max", out string timeRest2maxS);
         dictionary.TryGetValue("timeQuestion", out string timeQuestionS);
         dictionary.TryGetValue("timeAnswer", out string timeAnswerS);
+        dictionary.TryGetValue("timeSubmit", out string timeSubmitS);
         dictionary.TryGetValue("timeCostShow", out string timeCostShowS);
         dictionary.TryGetValue("timeCostEnter", out string timeCostEnterS);
         dictionary.TryGetValue("timeReward", out string timeRewardS);
@@ -162,6 +168,7 @@ public class IOManager : MonoBehaviour
         dictionary.TryGetValue("numberOfBlocks", out string numberOfBlocksS);
         dictionary.TryGetValue("numberOfInstances", out string numberOfInstancesS);
         dictionary.TryGetValue("instanceRandomization", out string instanceRandomizationS);
+        dictionary.TryGetValue("offloadingRandomization", out string offloadingRandomizationS);
         
         GameManager.timeRest1min = Convert.ToSingle(timeRest1minS);
         GameManager.timeRest1max = Convert.ToSingle(timeRest1maxS);
@@ -169,6 +176,7 @@ public class IOManager : MonoBehaviour
         GameManager.timeRest2max = Convert.ToSingle(timeRest2maxS);
         GameManager.timeQuestion = int.Parse(timeQuestionS);
         GameManager.timeAnswer = int.Parse(timeAnswerS);
+        GameManager.timeSubmit = int.Parse(timeSubmitS);
         GameManager.timeCostShow = int.Parse(timeCostShowS);
         GameManager.timeCostEnter = int.Parse(timeCostEnterS); 
         GameManager.timeReward = int.Parse(timeRewardS);
@@ -186,7 +194,6 @@ public class IOManager : MonoBehaviour
                 GameManager.RandNumDigits = int.Parse(cost_digitsS);
             }
         }
-        //Debug.Log(reward_amountS.Substring(1, reward_amountS.Length - 2));
 
         // things common to all three variants
         GameManager.reward_amount = Array.ConvertAll(reward_amountS.Substring(1,
@@ -199,14 +206,25 @@ public class IOManager : MonoBehaviour
             Array.ConvertAll(instanceRandomizationS.Substring(1, 
             instanceRandomizationS.Length - 2).Split(','), int.Parse);
 
-        //Debug.Log(instanceRandomizationNo0.Length);
+        int[] offloadingRandomizationNo0 = 
+            Array.ConvertAll(offloadingRandomizationS.Substring(1, 
+            offloadingRandomizationS.Length - 2).Split(','), int.Parse);
+
         GameManager.Randomization = new int[instanceRandomizationNo0.Length];
+        GameManager.offloadingRandomization = new int[offloadingRandomizationNo0.Length];
 
         for (int i = 0; i < instanceRandomizationNo0.Length; i++)
         {
-            GameManager.Randomization[i] = instanceRandomizationNo0[i] - 1;
+            GameManager.Randomization[i] = instanceRandomizationNo0[i];
+//            Debug.Log("Randomization: " + GameManager.Randomization[i].ToString());
         }
-        
+
+        for (int i = 0; i < offloadingRandomizationNo0.Length; i++)
+        {
+            GameManager.offloadingRandomization[i] = offloadingRandomizationNo0[i];
+        }
+
+
         ////Assigns LayoutParameters
         dictionary.TryGetValue("columns", out string columnsS);
         dictionary.TryGetValue("rows", out string rowsS);
@@ -230,16 +248,17 @@ public class IOManager : MonoBehaviour
         lines3[0] = "PartcipantID:" + participantID;
         lines3[1] = "RandID:" + randomisationID;
         lines3[2] = "InitialTimeStamp:" + GameManager.initialTimeStamp;
-        lines3[3] = "instanceNumber;capacity;profit;weights;values;id;type;sol";
+        lines3[3] = "instance_number;capacity;optimal_value;weights;values;alpha_c;alpha_p_star;sahniK;instance_id;seed";
         int l = 4;
         int ksn = 1;
         foreach (GameManager.KPInstance ks in GameManager.kpinstances)
         {
             //With instance type and problem ID
-            lines3[l] = ksn + ";" + ks.capacity + ";" + ks.profit + ";" + 
-                string.Join(",", ks.weights.Select(p => p.ToString()).ToArray()) + 
-                ";" + string.Join(",", ks.values.Select(p => p.ToString()).ToArray())
-                + ";" + ks.id + ";" + ks.type + ";" + ks.solution;
+            lines3[l] = ksn + ";" + ks.capacity + ";" + ks.solution + ";" + 
+                string.Join(",", ks.weights.Select(p => p.ToString()).ToArray()) + ";"
+                + string.Join(",", ks.values.Select(p => p.ToString()).ToArray()) + ";"
+                + ks.alpha_c + ";" + ks.alpha_p_star + ";" + ks.sahniK + ";" + ks.id + ";"
+                + ks.seed;
             l++;
             ksn++;
         }
@@ -256,9 +275,7 @@ public class IOManager : MonoBehaviour
         lines[0] = "PartcipantID:" + participantID;
         lines[1] = "RandID:" + randomisationID;
         lines[2] = "InitialTimeStamp:" + GameManager.initialTimeStamp;
-        lines[3] = "block;trial;answer;correct;timeSpent;itemsSelected;" +
-            "finalvalue;finalweight;ReverseButtons;instanceNumber;pay;" +
-            "xyCoordinates;";
+        lines[3] = "block;trial;response;optimal_value;time_spent;items_selected;final_value;final_weight;confidence;instance_number;pay;xy_coordinates;";
 
         if(GameManager.cost == 1)
         {
@@ -277,7 +294,7 @@ public class IOManager : MonoBehaviour
         lines1[0] = "PartcipantID:" + participantID;
         lines1[1] = "RandID:" + randomisationID;
         lines1[2] = "InitialTimeStamp:" + GameManager.initialTimeStamp;
-        lines1[3] = "block;trial;eventType;elapsedTime";
+        lines1[3] = "block;trial;event;elapsed_time";
         using (StreamWriter outputFile = new StreamWriter(folderPathSave +
             Identifier + "TimeStamps.txt", true))
         {
@@ -290,7 +307,7 @@ public class IOManager : MonoBehaviour
         lines2[0] = "PartcipantID:" + participantID;
         lines2[1] = "RandID:" + randomisationID;
         lines2[2] = "InitialTimeStamp:" + GameManager.initialTimeStamp;
-        lines2[3] = "block;trial;itemnumber(100=Reset);Out(0)/In(1)/Reset(2)/Other;time";
+        lines2[3] = "block;trial;item_number;description;offloading;confidence;unselect(0)/select(1)/reset(2)/offloading(3)/confidence(4);time";
         using (StreamWriter outputFile = new StreamWriter(folderPathSave + Identifier + "Clicks.txt", true))
         {
             WriteToFile(outputFile, lines2);
@@ -306,27 +323,19 @@ public class IOManager : MonoBehaviour
     public static void SaveTrialInfo(int answer, string itemsSelected, float timeSpent)
     {
         string xyCoordinates = BoardManager.GetItemCoordinates();
-
-        // Get the instance n umber for this trial and add 1 because the 
-        // instanceRandomization is linked to array numbering in C#, which starts at 0;
-        int instanceNum = GameManager.Randomization[GameManager.TotalTrials - 1] + 1;
-
-        int solutionQ = GameManager.kpinstances[instanceNum - 1].solution;
-
-        //"block;trial;answer;correct;timeSpent;itemsSelected;" +
-        //"finalvalue;finalweight;ReverseButtons;instanceNumber;pay;" +
-        //";xyCoordinates";
+        int instanceNum = GameManager.Randomization[GameManager.TotalTrials - 1];
+        int solutionQ = GameManager.kpinstances[GameManager.TotalTrials - 1].solution;
 
         // Reverse buttons is 1 if no/yes; 0 if yes/no
-        string dataTrialText = GameManager.block + ";" + GameManager.trial + ";" + answer + ";" + GameManager.performance 
-             + ";"+ timeSpent + ";" + itemsSelected + ";" + GameManager.valueValue + ";" 
-            + GameManager.weightValue + ";" + BoardManager.ReverseButtons + ";" + instanceNum + ";" + GameManager.pay + ";"
-            + xyCoordinates;
+        string dataTrialText = GameManager.block + ";" + GameManager.trial + ";" + answer + ";" + GameManager.optimal_value 
+             + ";"+ timeSpent + ";" + itemsSelected + ";" + GameManager.final_value + ";" + GameManager.final_weight + ";"
+             + BoardManager.confidence_trialinfo + ";" + instanceNum + ";" + GameManager.pay + ";" + xyCoordinates;
 
         if (GameManager.cost == 1)
         {
             dataTrialText = dataTrialText + ";" + GameManager.RandNum + ";" + GameManager.SubmittedRandNum;
         }
+
         // This location can be used by unity to save a file if u open the 
         // game in any platform/computer: Application.persistentDataPath;
 
@@ -342,8 +351,6 @@ public class IOManager : MonoBehaviour
     /// <summary>
     /// Saves the time stamp for a particular event type to the "TimeStamps" File
     /// </summary>
-    /// Event type: 1=ItemsWithQuestion;2=AnswerScreen;3=InterTrialScreen;
-    /// 4=InterBlockScreen;5=EndScreen
     public static void SaveTimeStamp(string eventType)
     {
         string dataTrialText = GameManager.block + ";" + GameManager.trial + 
@@ -368,8 +375,8 @@ public class IOManager : MonoBehaviour
 
         foreach (BoardManager.Click click in itemClicks)
         {
-            lines[i] = GameManager.block + ";" + GameManager.trial + 
-                ";" + click.ItemNumber + ";" + click.State + ";" + click.time;
+            lines[i] = GameManager.block + ";" + GameManager.trial + ";" + click.ItemNumber + ";" + click.description + 
+            ";" + click.offloading +";" + click.confidence + ";" + click.State + ";" + click.time;
             i++;
         }
 

@@ -36,8 +36,8 @@ public class BoardManager : MonoBehaviour
     public static int ReverseButtons;
 
     // Current counters
-    public Text ValueText;
-    public Text WeightText;
+    public static Text ValueText;
+    public static Text WeightText;
     public Text WeightLeft;
     public Text TooHeavy;
 
@@ -72,7 +72,10 @@ public class BoardManager : MonoBehaviour
     public Text Note29;
     public Text Note30;
 
-    public static List<string> notelist = new List<string>();
+    public static List<string> notelist;
+    public static int notelistindex;
+
+    public static int submitcounter;
 
 
     //The possible positions of the items;
@@ -87,12 +90,13 @@ public class BoardManager : MonoBehaviour
     // to record optimal value
     public static int solution;
 
+    public static int confidence_trialinfo;
+
     // A list to store the previous item numbers
     public static List<int> previousitems = new List<int>();
 
     // Reset button
     public Button Reset;
-    
 
     public Button TestButton;
 
@@ -139,6 +143,9 @@ public class BoardManager : MonoBehaviour
     {
         // itemnumber (itemnumber or 100=Reset). State: In(1)/Out(0)/Invalid(2)/Reset(3). Time in seconds
         public int ItemNumber;
+        public string description;
+        public string offloading;
+        public string confidence;
         public int State;
         public float time;
     }
@@ -147,7 +154,8 @@ public class BoardManager : MonoBehaviour
     public static int itemsvisited = 0;
 
     // Current Instance number
-    public static int currInstance;
+//    public static int currInstance;
+    public static int currOffloading;
 
     /// Macro function that initializes the Board
     public void SetupTrial()
@@ -189,58 +197,61 @@ public class BoardManager : MonoBehaviour
     {
         KSItemPrefab = (GameObject)Resources.Load("KSItem3");
 
-        currInstance = GameManager.Randomization[GameManager.TotalTrials - 1];
-        question = "$" + GameManager.kpinstances[currInstance].profit +
-            "\n\n" + GameManager.kpinstances[currInstance].capacity + "kg";
+//        currInstance = GameManager.Randomization[GameManager.TotalTrials - 1];
+
+        currOffloading = GameManager.offloadingRandomization[GameManager.TotalTrials - 1];
+        question = GameManager.kpinstances[GameManager.TotalTrials - 1].capacity + "kg?";
 
 
-        //  Instance information
+        // Instance information
         Debug.Log("Setting up  Instance: Block " + (GameManager.block) + "/" + GameManager.numberOfBlocks + 
             ", Trial " + GameManager.trial + "/" + GameManager.numberOfTrials + " , Total Trial " + 
-            GameManager.TotalTrials + " , Current Instance " + (GameManager.Randomization[GameManager.TotalTrials - 1] + 1));
+            GameManager.TotalTrials + " , Current Instance " + GameManager.Randomization[GameManager.TotalTrials - 1]);
 
-        ws = GameManager.kpinstances[currInstance].weights;
-        vs = GameManager.kpinstances[currInstance].values;
+        ws = GameManager.kpinstances[GameManager.TotalTrials - 1].weights;
+        vs = GameManager.kpinstances[GameManager.TotalTrials - 1].values;
 
-        solution = GameManager.kpinstances[currInstance].solution;
+        solution = GameManager.kpinstances[GameManager.TotalTrials - 1].solution;
+
+        confidence_trialinfo = 0;
 
         // Display current value
         ValueText = GameObject.Find("ValueText").GetComponent<Text>();
-
+        
         // Display current weight
         WeightText = GameObject.Find("WeightText").GetComponent<Text>();
-
+        
         // Display current weight left
         WeightLeft = GameObject.Find("WeightLeft").GetComponent<Text>();
-
+        
         // Show when weight is excessive
         TooHeavy = GameObject.Find("TooHeavy").GetComponent<Text>();
-
+        
         // make reset button clickable
         Reset = GameObject.Find("Reset").GetComponent<Button>();
         Reset.onClick.AddListener(ResetClicked);
-
-        // make answer button clickable
-        Answer = GameObject.Find("Answer").GetComponent<Button>();
-        Answer.onClick.AddListener(FinishTrial);
-
+        
         // make calculation buttons clickable
         Button ShowCalcValue = GameObject.Find("ShowCalcValue").GetComponent<Button>();
         ShowCalcValue.onClick.AddListener(TotalValue);
-
         Button ShowCalcWeight = GameObject.Find("ShowCalcWeight").GetComponent<Button>();
         ShowCalcWeight.onClick.AddListener(TotalWeight);
-
+        
         // make store buttons clickable
         Button StoreValue = GameObject.Find("StoreValue").GetComponent<Button>();
         StoreValue.onClick.AddListener(MemoriseValue);
         Button StoreWeight = GameObject.Find("StoreWeight").GetComponent<Button>();
         StoreWeight.onClick.AddListener(MemoriseWeight);
+        Button StoreItem = GameObject.Find("StoreItem").GetComponent<Button>();
+        StoreItem.onClick.AddListener(MemoriseItem);
+        
 
+        // make answer button clickable
+        Answer = GameObject.Find("Answer").GetComponent<Button>();
+        Answer.onClick.AddListener(FinishTrial);
 
-        Button TestButton = GameObject.Find("TestButton").GetComponent<Button>();
-        TestButton.onClick.AddListener(RemoveEverything);
-
+        Button SubmitAnswer = GameObject.Find("SubmitAnswer").GetComponent<Button>();
+        SubmitAnswer.onClick.AddListener(RemoveEverything);
 
 
         // transfer stored text to textboxes
@@ -275,6 +286,13 @@ public class BoardManager : MonoBehaviour
         Note29 = GameObject.Find("Note29").GetComponent<Text>();
         Note30 = GameObject.Find("Note30").GetComponent<Text>();
 
+        notelist = new List<string>();
+        notelistindex = 0;
+
+        submitcounter = 0;
+
+        ValueText.text = "TOTAL VALUE: $0";
+        WeightText.text = "TOTAL WEIGHT: 0kg";
 
         if (GameManager.size == 1)
         {
@@ -285,9 +303,6 @@ public class BoardManager : MonoBehaviour
             GameObject.Find("Timer").SetActive(false);
         }
 
-        TotalValue();
-        TotalWeight();
-
         // set question text
         Text Quest = GameObject.Find("Question").GetComponent<Text>();
         Quest.text = question;
@@ -297,6 +312,50 @@ public class BoardManager : MonoBehaviour
         {
             GameObject answerbutton = GameObject.Find("Answer") as GameObject;
             answerbutton.SetActive(false);
+        }
+
+
+        if (currOffloading == 0)
+        {
+            GameObject.Find("ShowCalcValue").SetActive(false);
+            GameObject.Find("ShowCalcWeight").SetActive(false);
+            GameObject.Find("StoreValue").SetActive(false);
+            GameObject.Find("StoreWeight").SetActive(false);
+            GameObject.Find("StoreItem").SetActive(false);
+            GameObject.Find("Reset").SetActive(false);
+            GameObject.Find("ValueText").SetActive(false);
+            GameObject.Find("WeightText").SetActive(false);
+            GameObject.Find("Note1").SetActive(false);
+            GameObject.Find("Note2").SetActive(false);
+            GameObject.Find("Note3").SetActive(false);
+            GameObject.Find("Note4").SetActive(false);
+            GameObject.Find("Note5").SetActive(false);
+            GameObject.Find("Note6").SetActive(false);
+            GameObject.Find("Note7").SetActive(false);
+            GameObject.Find("Note8").SetActive(false);
+            GameObject.Find("Note9").SetActive(false);
+            GameObject.Find("Note10").SetActive(false);
+            GameObject.Find("Note11").SetActive(false);
+            GameObject.Find("Note12").SetActive(false);
+            GameObject.Find("Note13").SetActive(false);
+            GameObject.Find("Note14").SetActive(false);
+            GameObject.Find("Note15").SetActive(false);
+            GameObject.Find("Note16").SetActive(false);
+            GameObject.Find("Note17").SetActive(false);
+            GameObject.Find("Note18").SetActive(false);
+            GameObject.Find("Note19").SetActive(false);
+            GameObject.Find("Note20").SetActive(false);
+            GameObject.Find("Note21").SetActive(false);
+            GameObject.Find("Note22").SetActive(false);
+            GameObject.Find("Note23").SetActive(false);
+            GameObject.Find("Note24").SetActive(false);
+            GameObject.Find("Note25").SetActive(false);
+            GameObject.Find("Note26").SetActive(false);
+            GameObject.Find("Note27").SetActive(false);
+            GameObject.Find("Note28").SetActive(false);
+            GameObject.Find("Note29").SetActive(false);
+            GameObject.Find("Note30").SetActive(false);
+            GameObject.Find("Notepad").SetActive(false);
         }
     }
 
@@ -316,34 +375,35 @@ public class BoardManager : MonoBehaviour
                     (float)Math.Cos(radian_separation * i) * radius));
             }
 
-        //if (GameManager.reward == 1 || GameManager.cost == 1)
-        //{
-        //    int radius = 350;
-        //    for (int i = 0; i < ws.Length; i++)
-        //    {
-        //        // Generate a new item every this many radians...
-        //        double radian_separation = (360f / ws.Length * Math.PI) / 180;
-        //        //Debug.Log((float)Math.Sin(radian_separation * i) * radius + " " +
-        //        //    (float)Math.Cos(radian_separation * i) * radius);
-        //        gridPositions.Add(new Vector2((float)Math.Sin(radian_separation * i) * radius, 
-        //            (float)Math.Cos(radian_separation * i) * radius));
-        //    }
-        //}
-        //else
-        //{
-        //    // Generate a list of possible positions, this is shaped like a box with a centre cut out
-        //    for (int x = -resolutionWidth / 2; x < resolutionWidth / 2; x += resolutionWidth / columns)
-        //    {
-        //        for (int y = -resolutionHeight / 2 + bottommargin; y < resolutionHeight / 2; y += ((resolutionHeight - bottommargin) / rows))
-        //        {
-        //            if (Math.Abs(x) > centremargin || Math.Abs(y) > centremargin)
-        //            {
-        //                gridPositions.Add(new Vector2(x, y));
-        //            }
-        //        }
-        //    }
-        //}
-
+        /*
+        if (GameManager.reward == 1 || GameManager.cost == 1)
+        {
+            int radius = 350;
+            for (int i = 0; i < ws.Length; i++)
+            {
+                // Generate a new item every this many radians...
+                double radian_separation = (360f / ws.Length * Math.PI) / 180;
+                //Debug.Log((float)Math.Sin(radian_separation * i) * radius + " " +
+                //    (float)Math.Cos(radian_separation * i) * radius);
+                gridPositions.Add(new Vector2((float)Math.Sin(radian_separation * i) * radius, 
+                    (float)Math.Cos(radian_separation * i) * radius));
+            }
+        }
+        else
+        {
+            // Generate a list of possible positions, this is shaped like a box with a centre cut out
+            for (int x = -resolutionWidth / 2; x < resolutionWidth / 2; x += resolutionWidth / columns)
+            {
+                for (int y = -resolutionHeight / 2 + bottommargin; y < resolutionHeight / 2; y += ((resolutionHeight - bottommargin) / rows))
+                {
+                    if (Math.Abs(x) > centremargin || Math.Abs(y) > centremargin)
+                    {
+                        gridPositions.Add(new Vector2(x, y));
+                    }
+                }
+            }
+        }
+        */
         //Debug.Log("Number of possible positions: " + gridPositions.Count);
     }
 
@@ -351,7 +411,8 @@ public class BoardManager : MonoBehaviour
     //Returns a random position from the grid and removes the item from the list.
     Vector2 RandomPosition()
     {
-        int randomIndex = Random.Range(0, gridPositions.Count);
+        // int randomIndex = Random.Range(0, gridPositions.Count);
+        int randomIndex = 0;
         Vector2 randomPosition = gridPositions[randomIndex];
         gridPositions.RemoveAt(randomIndex);
         return randomPosition;
@@ -413,42 +474,43 @@ public class BoardManager : MonoBehaviour
         itemcircle.GetComponentInChildren<Text>().text = (itemNumber + 1).ToString();
 
         // circle....text = itemNumber.ToString()
-        
 
-        //if (GameManager.size == 1)
-        //{
-        //    // Calculates the area of the Value and Weight sections of the item according to approach 2 
-        //    // and then Scales the sections so they match the corresponding area.
-        //    Vector3 curr_billscale = bill.transform.localScale;
-        //    float billscale = (float)Math.Pow(vs[itemNumber] / vs.Average(), 0.6) * curr_billscale.x - 0.15f;
+        /*        
+        if (GameManager.size == 1)
+        {
+            // Calculates the area of the Value and Weight sections of the item according to approach 2 
+            // and then Scales the sections so they match the corresponding area.
+            Vector3 curr_billscale = bill.transform.localScale;
+            float billscale = (float)Math.Pow(vs[itemNumber] / vs.Average(), 0.6) * curr_billscale.x - 0.15f;
 
-        //    if (billscale < 0.7f * curr_billscale.x)
-        //    {
-        //        billscale = 0.7f * curr_billscale.x;
-        //    }
-        //    else if (billscale > 1.0f * curr_billscale.x)
-        //    {
-        //        billscale = 1.0f * curr_billscale.x;
-        //    }
+            if (billscale < 0.7f * curr_billscale.x)
+            {
+                billscale = 0.7f * curr_billscale.x;
+            }
+            else if (billscale > 1.0f * curr_billscale.x)
+            {
+                billscale = 1.0f * curr_billscale.x;
+            }
 
-        //    bill.transform.localScale = new Vector3(billscale,
-        //        billscale, billscale);
+            bill.transform.localScale = new Vector3(billscale,
+                billscale, billscale);
 
-        //    Vector3 curr_weightscale = weight.transform.localScale;
-        //    float weightscale = (float)Math.Pow(ws[itemNumber] / ws.Average(), 0.6) * curr_weightscale.x - 0.15f;
+            Vector3 curr_weightscale = weight.transform.localScale;
+            float weightscale = (float)Math.Pow(ws[itemNumber] / ws.Average(), 0.6) * curr_weightscale.x - 0.15f;
 
-        //    if (weightscale < 0.7f * curr_weightscale.x)
-        //    {
-        //        weightscale = 0.7f * curr_weightscale.x;
-        //    }
-        //    else if (weightscale > 1.0f * curr_weightscale.x)
-        //    {
-        //        weightscale = 1.0f * curr_weightscale.x;
-        //    }
+            if (weightscale < 0.7f * curr_weightscale.x)
+            {
+                weightscale = 0.7f * curr_weightscale.x;
+            }
+            else if (weightscale > 1.0f * curr_weightscale.x)
+            {
+                weightscale = 1.0f * curr_weightscale.x;
+            }
 
-        //    weight.transform.localScale = new Vector3(weightscale,
-        //        weightscale, weightscale);
-        //}
+            weight.transform.localScale = new Vector3(weightscale,
+                weightscale, weightscale);
+        }
+        */
 
         Item itemInstance = new Item
         {
@@ -474,7 +536,7 @@ public class BoardManager : MonoBehaviour
         if (myLight.enabled == true)
         {
             if ((GameManager.weightValue - ws[itemToLocate.ItemNumber]) <=
-            GameManager.kpinstances[currInstance].capacity)
+            GameManager.kpinstances[GameManager.TotalTrials - 1].capacity)
             {
                 TooHeavy.text = " ";
             }
@@ -494,7 +556,7 @@ public class BoardManager : MonoBehaviour
     bool ClickValid(Item itemToLocate)
     {
         if ((GameManager.weightValue + ws[itemToLocate.ItemNumber]) >
-           GameManager.kpinstances[currInstance].capacity)
+           GameManager.kpinstances[GameManager.TotalTrials - 1].capacity)
         {
             TooHeavy.text = "Weight Limit Exceeded!";
             WeightLeft.text = "Exceeded";
@@ -502,7 +564,7 @@ public class BoardManager : MonoBehaviour
         else
         {
             TooHeavy.text = " ";
-            WeightLeft.text = "Excess Capacity: " + (GameManager.kpinstances[currInstance].capacity -
+            WeightLeft.text = "Excess Capacity: " + (GameManager.kpinstances[GameManager.TotalTrials - 1].capacity -
             GameManager.weightValue).ToString() + "kg";
         }
 
@@ -542,20 +604,22 @@ public class BoardManager : MonoBehaviour
     //changeToNextScene(answer) on game manager
     private void SetKeyInput()
     {
+        /*
+        if (GameManager.escena == "TrialAnswer")
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                //Left
+                AnswerSelect("left");
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                //Right
+                AnswerSelect("right");
+            }
+        }
+        */
 
-        //if (GameManager.escena == "TrialAnswer")
-        //{
-        //    if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //    {
-        //        //Left
-        //        AnswerSelect("left");
-        //    }
-        //    else if (Input.GetKeyDown(KeyCode.RightArrow))
-        //    {
-        //        //Right
-        //        AnswerSelect("right");
-        //    }
-        //}
         if (GameManager.escena == "SetUp")
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -626,19 +690,16 @@ public class BoardManager : MonoBehaviour
         startButton.onClick.AddListener(StartClicked);
     }
 
-
     public static string GetItemCoordinates()
     {
         string coordinates = "";
         foreach (Item it in items)
         {
-            //Debug.Log("item");
-            //Debug.Log(it.center);
-            //Debug.Log(it.coordWeight1);
             coordinates = coordinates + "(" + it.center.x + "," + it.center.y + ")";
         }
         return coordinates;
     }
+
 
     public static void StartClicked()
     {
@@ -648,92 +709,76 @@ public class BoardManager : MonoBehaviour
     }
 
     // Function to display distance and weight in Unity
-    // void SetTopRowText()
-    // {
-    //     CalcValue();
-    //     ValueText.text = "Total Value: $" + GameManager.valueValue.ToString();
-
-    //     CalcWeight();
-    //     WeightText.text = "Total Weight: " + GameManager.weightValue.ToString() + "kg";
-    //     if ((GameManager.kpinstances[currInstance].capacity - GameManager.weightValue) >= 0)
-    //     {
-    //         WeightLeft.text = "Excess Capacity: " + (GameManager.kpinstances[currInstance].capacity -
-    //             GameManager.weightValue).ToString() + "kg";
-    //     }
-    // }
-
-    void TotalValue()
+    /*
+    void SetTopRowText()
     {
         CalcValue();
-        ValueText.text = "TOTAL VALUE: $" + GameManager.valueValue.ToString();
-    }
+        ValueText.text = "Total Value: $" + GameManager.valueValue.ToString();
 
-    void TotalWeight()
-    {
         CalcWeight();
-        WeightText.text = "TOTAL WEIGHT: " + GameManager.weightValue.ToString() + "kg";
-    }
-
-
-    // Function to store calculated value and weight in a textbox
-    void MemoriseValue()
-    {
-        string storedvalue = ValueText.text.Substring(13);
-        
-        if (!notelist.Contains(storedvalue))
+        WeightText.text = "Total Weight: " + GameManager.weightValue.ToString() + "kg";
+        if ((GameManager.kpinstances[GameManager.TotalTrials - 1].capacity - GameManager.weightValue) >= 0)
         {
-            notelist.Add(storedvalue);
+            WeightLeft.text = "Excess Capacity: " + (GameManager.kpinstances[GameManager.TotalTrials - 1].capacity -
+                GameManager.weightValue).ToString() + "kg";
         }
-        
-        int notenumber = notelist.FindIndex(a => a.Contains(storedvalue)) + 1;
-        string notefinder = "Note" + notenumber.ToString();
-
-        GameObject.Find(notefinder).GetComponent<UnityEngine.UI.Text>().text = storedvalue;
     }
-
-    void MemoriseWeight()
-    {
-        string storedweight = WeightText.text.Substring(14);
-        if (!notelist.Contains(storedweight))
-        {
-            notelist.Add(storedweight);
-        }
-        
-        int notenumber = notelist.FindIndex(a => a.Contains(storedweight)) + 1;
-        string notefinder = "Note" + notenumber.ToString();
-
-        GameObject.Find(notefinder).GetComponent<UnityEngine.UI.Text>().text = storedweight;
-    }
-
+    */
 
     // Add current item to previous items
-    void AddItem(Item itemToLocate)
+    static void AddItem(Item itemToLocate)
     {
         previousitems.Add(itemToLocate.ItemNumber);
         itemsvisited = previousitems.Count();
 
         Click newclick;
         newclick.ItemNumber = itemToLocate.ItemNumber;
+        newclick.description = "item";
+        newclick.offloading = "NA";
+        newclick.confidence = "NA";
         newclick.State = 1;
-        newclick.time = GameManager.timeQuestion - GameManager.tiempo;
+        newclick.time = GameManager.totalTime - GameManager.tiempo;
         itemClicks.Add(newclick);
     }
 
     // Remove current item from previous items
-    void RemoveItem(Item itemToLocate)
+    static void RemoveItem(Item itemToLocate)
     {
         previousitems.Remove(itemToLocate.ItemNumber);
         itemsvisited = previousitems.Count();
 
         Click newclick;
         newclick.ItemNumber = itemToLocate.ItemNumber;
+        newclick.description = "item";
+        newclick.offloading = "NA";
+        newclick.confidence = "NA";
         newclick.State = 0;
         newclick.time = GameManager.timeQuestion - GameManager.tiempo;
         itemClicks.Add(newclick);
     }
 
-    // Function to calculate total distance thus far
-    public void CalcValue()
+    public void ResetClicked()
+    {
+        if (previousitems.Count() != 0)
+        {
+            Lightoff();
+            previousitems.Clear();
+            TotalValue();
+            TotalWeight();
+            itemsvisited = 0;
+
+            Click newclick;
+            newclick.ItemNumber = 200;
+            newclick.description = "reset";
+            newclick.offloading = "NA";
+            newclick.confidence = "NA";
+            newclick.State = 2;
+            newclick.time = GameManager.timeQuestion - GameManager.tiempo;
+            itemClicks.Add(newclick);
+        }
+    }
+
+    public static void CalcValue()
     {
         int[] individualvalues = new int[previousitems.Count()];
         if (previousitems.Count() > 0)
@@ -751,8 +796,7 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    // Function to calculate total WCSPP weight thus far
-    public void CalcWeight()
+    public static void CalcWeight()
     {
         int[] individualweights = new int[previousitems.Count()];
         if (previousitems.Count() > 0)
@@ -770,26 +814,156 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-
-    public void ResetClicked()
+    static void TotalValue()
     {
-        if (previousitems.Count() != 0)
-        {
-            Lightoff();
-            previousitems.Clear();
-            TotalValue();
-            TotalWeight();
-            itemsvisited = 0;
-
-            Click newclick;
-            newclick.ItemNumber = 100;
-            newclick.State = 2;
-            newclick.time = GameManager.timeQuestion - GameManager.tiempo;
-            itemClicks.Add(newclick);
-        }
+        CalcValue();
+        ValueText.text = "TOTAL VALUE: $" + GameManager.valueValue.ToString();
+        
+        Click newclick;
+        newclick.ItemNumber = 300;
+        newclick.description = "calculate_value";
+        newclick.offloading = ValueText.text.Substring(13);
+        newclick.confidence = "NA";
+        newclick.State = 3;
+        newclick.time = GameManager.timeQuestion - GameManager.tiempo;
+        itemClicks.Add(newclick);
     }
 
-    //Randomizes YES/NO button positions (left or right) and allocates corresponding script to save the correspondent answer.
+    static void TotalWeight()
+    {
+        CalcWeight();
+        WeightText.text = "TOTAL WEIGHT: " + GameManager.weightValue.ToString() + "kg";
+
+        Click newclick;
+        newclick.ItemNumber = 301;
+        newclick.description = "calculate_weight";
+        newclick.offloading = WeightText.text.Substring(14);
+        newclick.confidence = "NA";
+        newclick.State = 3;
+        newclick.time = GameManager.timeQuestion - GameManager.tiempo;
+        itemClicks.Add(newclick);
+    }
+
+    static void MemoriseValue()
+    {
+        string storedvalue = ValueText.text.Substring(13);
+        
+        if (storedvalue != "$0")
+        {
+            notelist.Add(storedvalue);
+            notelistindex = notelistindex + 1;
+            
+            string notefinder = "Note" + notelistindex.ToString();
+            GameObject.Find(notefinder).GetComponent<UnityEngine.UI.Text>().text = storedvalue;
+        }
+        
+        Click newclick;
+        newclick.ItemNumber = 400;
+        newclick.description = "store_value";
+        newclick.offloading = storedvalue;
+        newclick.confidence = "NA";
+        newclick.State = 3;
+        newclick.time = GameManager.timeQuestion - GameManager.tiempo;
+        itemClicks.Add(newclick);
+    }
+
+    static void MemoriseWeight()
+    {
+        string storedweight = WeightText.text.Substring(14);
+        if (storedweight != "0kg")
+        {
+            notelist.Add(storedweight);
+            notelistindex = notelistindex + 1;
+
+            string notefinder = "Note" + notelistindex.ToString();
+            GameObject.Find(notefinder).GetComponent<UnityEngine.UI.Text>().text = storedweight;
+        }
+
+        Click newclick;
+        newclick.ItemNumber = 401;
+        newclick.description = "store_weight";
+        newclick.offloading = storedweight;
+        newclick.confidence = "NA";
+        newclick.State = 3;
+        newclick.time = GameManager.timeQuestion - GameManager.tiempo;
+        itemClicks.Add(newclick);
+    }
+
+    static void MemoriseItem()
+    {
+        string storeditem = "";
+        string storeditem_displayonly = "";
+
+        foreach (var i in previousitems)
+        {
+            if (previousitems.IndexOf(i) == previousitems.Count()-1)
+            {
+                storeditem = storeditem + i.ToString();
+                storeditem_displayonly = storeditem_displayonly + (i+1).ToString();
+            }
+            else
+            {
+                storeditem = storeditem + i.ToString() + ",";
+                storeditem_displayonly = storeditem_displayonly + (i+1).ToString() + ",";
+            }
+        }
+
+        if (previousitems.Count() != 0)
+        {
+            notelist.Add(storeditem_displayonly);
+            notelistindex = notelistindex + 1;
+
+            string notefinder = "Note" + notelistindex.ToString();
+            GameObject.Find(notefinder).GetComponent<UnityEngine.UI.Text>().text = storeditem_displayonly;
+        }
+        
+        Click newclick;
+        newclick.ItemNumber = 402;
+        newclick.description = "store_order";
+        newclick.offloading = storeditem;
+        newclick.confidence = "NA";
+        newclick.State = 3;
+        newclick.time = GameManager.timeQuestion - GameManager.tiempo;
+        itemClicks.Add(newclick);
+    }
+
+    public static void ConfidenceButtons()
+    {
+        Button button0 = GameObject.Find("Button0").GetComponent<Button>();
+        Button button1 = GameObject.Find("Button1").GetComponent<Button>();
+        Button button2 = GameObject.Find("Button2").GetComponent<Button>();
+        Button button3 = GameObject.Find("Button3").GetComponent<Button>();
+        Button button4 = GameObject.Find("Button4").GetComponent<Button>();
+        Button button5 = GameObject.Find("Button5").GetComponent<Button>();
+        Button button6 = GameObject.Find("Button6").GetComponent<Button>();
+
+        button0.onClick.AddListener(delegate {ConfidenceSelect(0);});
+        button1.onClick.AddListener(delegate {ConfidenceSelect(1);});
+        button2.onClick.AddListener(delegate {ConfidenceSelect(2);});
+        button3.onClick.AddListener(delegate {ConfidenceSelect(3);});
+        button4.onClick.AddListener(delegate {ConfidenceSelect(4);});
+        button5.onClick.AddListener(delegate {ConfidenceSelect(5);});
+        button6.onClick.AddListener(delegate {ConfidenceSelect(6);});
+    }
+
+    public static void ConfidenceSelect(int ConfidenceLevel)
+    {
+        Click newclick;
+        newclick.ItemNumber = 600 + ConfidenceLevel;
+        newclick.description = "confidence";
+        newclick.offloading = "NA";
+        newclick.confidence = ConfidenceLevel.ToString();
+        newclick.State = 4;
+        newclick.time = GameManager.totalTime - GameManager.tiempo;
+        itemClicks.Add(newclick);
+        
+        confidence_trialinfo = ConfidenceLevel;
+        GameManager.ChangeToNextScene(itemClicks, true);
+    }
+
+
+    // Randomizes YES/NO button positions (left or right) and allocates corresponding script to save the correspondent answer.
+    /*
     public static void RandomizeButtons()
     {
         Button btnLeft = GameObject.Find("Left").GetComponent<Button>();
@@ -815,36 +989,38 @@ public class BoardManager : MonoBehaviour
             btnRight.GetComponentInChildren<Text>().text = "No";
         }
     }
+    */
 
     public static void FinishTrial()
     {
         Debug.Log("Skipped to answer screen");
-        IOManager.SaveTimeStamp("ParticipantSkip");
+        IOManager.SaveTimeStamp("Participant_Skip");
         GameManager.ChangeToNextScene(itemClicks, true);
     }
 
-    public static void AnswerSelect(string LeftOrRight)
-    {
-        if ((LeftOrRight == "left" && ReverseButtons == 1) || (LeftOrRight == "right" && ReverseButtons == 0))
-        {
-            // reversed left, or unreversed right, means answer is NO.
-            GameManager.answer = 0;
-            Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
-                GameManager.trial) + ", Answer chosen: NO");
-            GameManager.ChangeToNextScene(itemClicks, true);
-        }
-        else
-        {
-            // reversed right, or unreversed left, means answer is YES.
-            GameManager.answer = 1;
-            Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
-                GameManager.trial) + ", Answer chosen: YES");
-            GameManager.ChangeToNextScene(itemClicks, true);
-        }
-    }
+    /*
+     public static void AnswerSelect(string LeftOrRight)
+     {
+         if ((LeftOrRight == "left" && ReverseButtons == 1) || (LeftOrRight == "right" && ReverseButtons == 0))
+         {
+             // reversed left, or unreversed right, means answer is NO.
+             GameManager.answer = 0;
+             Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
+                 GameManager.trial) + ", Answer chosen: NO");
+             GameManager.ChangeToNextScene(itemClicks, true);
+         }
+         else
+         {
+             // reversed right, or unreversed left, means answer is YES.
+             GameManager.answer = 1;
+             Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
+                 GameManager.trial) + ", Answer chosen: YES");
+             GameManager.ChangeToNextScene(itemClicks, true);
+         }
+     }
+    */
 
-
-    private void Lightoff()
+    private static void Lightoff()
     {
         foreach (Item item in items)
         {
@@ -869,10 +1045,7 @@ public class BoardManager : MonoBehaviour
             pID.ActivateInputField();
             rID.ActivateInputField();
         }
-//        else if (GameManager.escena == "Trial")
-//        {
-//            SetTopRowText();
-//        }
+
         if (GameManager.escena == "EnterNumber")
         {
             EnterNum.ActivateInputField();
@@ -881,25 +1054,41 @@ public class BoardManager : MonoBehaviour
     }
 
     // remove all offloading mechanisms and prepare for submission
-    public void RemoveEverything()
+    public static void RemoveEverything()
     {
+        IOManager.SaveTimeStamp("Submit_Answer");
+        submitcounter = 1;
+        
         Lightoff();
         previousitems.Clear();
-        TotalValue();
-        TotalWeight();
         itemsvisited = 0;
+        CalcValue();
+        CalcWeight();
 
-        GameObject.Find("ShowCalcValue").SetActive(false);
-        GameObject.Find("ShowCalcWeight").SetActive(false);
-        GameObject.Find("StoreValue").SetActive(false);
-        GameObject.Find("StoreWeight").SetActive(false);
-        GameObject.Find("Reset").SetActive(false);
-        GameObject.Find("ValueText").SetActive(false);
-        GameObject.Find("WeightText").SetActive(false);
+        GameObject.Find("SubmitAnswer").SetActive(false);
 
+        if (currOffloading == 1)
+        {
+            GameObject.Find("ShowCalcValue").SetActive(false);
+            GameObject.Find("ShowCalcWeight").SetActive(false);
+            GameObject.Find("StoreValue").SetActive(false);
+            GameObject.Find("StoreWeight").SetActive(false);
+            GameObject.Find("StoreItem").SetActive(false);
+            GameObject.Find("Reset").SetActive(false);
+            GameObject.Find("ValueText").SetActive(false);
+            GameObject.Find("WeightText").SetActive(false);
+        }
 
-        GameManager.tiempo = 5;
-        GameManager.totalTime = 5;
+        Click newclick;
+        newclick.ItemNumber = 500;
+        newclick.description = "submit";
+        newclick.offloading = "NA";
+        newclick.confidence = "NA";
+        newclick.State = 2;
+        newclick.time = GameManager.totalTime - GameManager.tiempo;
+        itemClicks.Add(newclick);
 
+        GameManager.tiempo = GameManager.timeSubmit;
+        GameManager.totalTime = GameManager.timeSubmit;
     }
 }
